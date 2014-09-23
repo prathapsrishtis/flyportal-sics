@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html ng-app="ionicApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <title>Side Menus</title>
+
+    <link href="ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="ionic/js/ionic.bundle.js"></script>
+    <script src="ionic/js/angular/angular.js"></script>
+    <!--<script src="http://sicsglobal.com/projects/HybridApp/FlyPortal/js/script.js"></script>-->
+    <script src="js/script.js"></script>
+    <script src="phonegap.js"></script>
+</head>
+
+<body>
+<ion-nav-bar class="bar fly-portal-bar" animation="slide-left-right" style="height: 42px;">
+    <ion-nav-back-button class="button-icon ion-arrow-left-c">
+    </ion-nav-back-button>
+</ion-nav-bar>
+<ion-nav-view>
+</ion-nav-view>
+
+
+
+<script id="fly-side-menu.html" type="text/ng-template">
+    <ion-side-menus>
+
+        <ion-side-menu-content drag-content="false">
+            <ion-nav-buttons side="left" style="padding: none !important;">
+                <button class="button button-icon button-clear ion-navicon fly-portal-nav-left" ng-click="toggleLeft()" style="padding-top: 5px; background: rgba(0,0,0,0.2); color: #fff;">
+                </button>
+                <img src="img/c.PNG" width="130" style="margin-top: 8px;"/>
+            </ion-nav-buttons>
+            <ion-nav-view animation="slide-left-right" name="menuContent"></ion-nav-view>
+        </ion-side-menu-content>
+
+        <ion-side-menu side="left" style="top: -1px;">
+            <ion-content>
+                <ul class="list">
+                    <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on one of these links -->
+                    <a href="" style="background: #35c2af; border: none;" class="item" menu-close>Home</a>
+                    <a href="" style="background: #4cc9b9; border: none;" class="item" menu-close>News</a>
+                    <a href="" style="background: #7ad6cb; border: none;" class="item" menu-close>Social</a>
+                    <a href="" style="background: #8fdcd2; border: none;" class="item" menu-close>Jobs</a>
+                    <a href="" style="background: #a5e4db; border: none;" class="item" menu-close>Connection</a>
+                    <a ng-click="logOut()" ng-show="logoutBtnStatus==true" style="background: #a5e4db; border: none;" class="item" menu-close>Logout</a>
+                    <a href="" style="background: #a5e4db; border: none;" class="item" ng-click="loginDummy()" menu-close>Login(dummy)</a>
+                </ul>
+            </ion-content>
+        </ion-side-menu>
+
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear user-border-btn">
+            </button>
+            <!--<button class="button button-icon button-clear user-btn">
+            </button>
+            <button class="button button-icon button-clear" ng-class="{'user-btn2':status == true,'user-btn':status == false}">
+            </button>-->
+            <button class="button button-icon button-clear user-btn">
+            </button>
+        </ion-nav-buttons>
+
+    </ion-side-menus>
+</script>
+
+
+
+
+<script id="home.html" type="text/ng-template">
+    <ion-view title="" hide-back-button="true">
+        <div class="bar bar-subheader fly-sub-header">
+            <div class="row" style="padding: 0px;">
+                <div class="col" style="padding: 0px; padding-top: 2px;"> <span class="sub-header-title">HOME</span></div>
+                <div class="col sub-icon-col">
+                    <img src="img/src.PNG" width="20"/>
+                </div>
+            </div>
+        </div>
+        <ion-content class="has-subheader padding">
+            <div class="fly-login-header">Login/Sign up</div>
+            <div style="background-color: #f2f2f2;" class="padding"  >
+                <div class="ui-input-text"  >
+                    <input type="text" class="text-back-class" ng-class="{'success':errorStatus == true,'failed':errorStatus == false}"  value="" data-clear-btn="true" placeholder="Email" ng-model="user.email" ng-keyup="checkUser(user.email)">
+                </div>
+                    <div class="ui-input-text" >
+                        <input type="password" class="text-back-class"  value="" data-clear-btn="true" placeholder="Password" ng-model="user.password">
+                    </div>
+                <div class="row">
+                    <div class="col" align="center">
+                        <button class="button button-block login-btn" ng-click="userLogin(user)" ng-disabled="loginStatus">
+                        Login
+                    </button>
+                    </div>
+                    <div class="col" align="center">
+                        <button class="button button-block register-btn" ui-sref="fly-menu.register" ng-disabled="regStatus" >
+                           Register
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="feed-head"> Feeds </div>
+            <div class="list">
+                <a class="item" href="#" ng-repeat="feed in feeds">
+                    <!--<div class="row" style="padding: 0; line-height: 23px; padding-bottom: 12px;" id="feed_user_head">
+                        <div class="col col-80" align="left" style="padding-left: 0;white-space: normal; font-family: Lucida Sans Unicode;">{{feed.username}}</div>
+                        <div class="col col-25" align="right" style="color: #b2b2b2;font-size:11px; position: relative;left: -7px;">{{feed.time}}</div>
+                    </div>-->
+                    <div class="row" style="padding: 0; line-height: 23px; padding-bottom: 8px;" id="feed_user_head">
+                        <div class="col" align="left" style="padding-left: 0;white-space: normal; font-family: Lucida Sans Unicode; font-size: 15px;">{{feed.username}}
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 0;">
+                        <div class="col col-25" style="text-align: left; color: #b2b2b2; font-size: 15px; position: relative; left: 4px; bottom: 4px;">
+                        {{feed.time}}
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 0;" id="feed_content">
+                        <div class="col" style="padding-left: 10px; white-space: normal; text-align: justify;">
+                            <img src="http://www.sicsglobal.com/projects/HybridApp/flyportal/uploads/pics_large/{{feed.image}}" style="float: left; padding-right: 5px ; padding-bottom:5px; margin-right: 8px; width: 100px; height: 100px;"   >
+                            <span style="white-space: normal; font-size: 14px;">{{feed.feed}}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </ion-content>
+    </ion-view>
+</script>
+
+
+
+<script id="register.html" type="text/ng-template">
+    <ion-view hide-back-button="true">
+        <div class="bar bar-subheader fly-sub-header">
+            <div class="row" style="padding: 0px;">
+                <div class="col" style="padding: 0px; padding-top: 2px;"> <span class="sub-header-title">HOME</span></div>
+                <div class="col sub-icon-col">
+                   <img src="img/src.PNG" width="20"/>
+                </div>
+            </div>
+        </div>
+        <ion-content class="has-subheader padding">
+            <div class="fly-login-header">Register</div>
+            <div style="background-color: #f2f2f2;">
+            <div style="background-color: #f2f2f2;" class="padding">
+                <div class="ui-input-text"  >
+                    <input type="text" class="text-back-class"  ng-model="register.email" data-clear-btn="true" placeholder="Email">
+                </div>
+                <div class="ui-input-text" >
+                    <input type="password" class="text-back-class"  ng-model="register.password" data-clear-btn="true" placeholder="Password">
+                </div>
+                <div class="ui-input-text" >
+                    <input type="password" class="text-back-class" ng-class="{'success':register.password==register.repassword,'failed':register.password!=register.repassword}"  ng-model="register.repassword" data-clear-btn="true" placeholder="Re-enter password">
+                </div>
+            </div>
+            <div class="feed-head"> Personal Details </div>
+            <div class="padding"  >
+                <div class="ui-input-text"  >
+                    <input type="text" class="text-back-class"  ng-model="register.name" data-clear-btn="true" placeholder="First Name">
+                </div>
+                <div class="ui-input-text" >
+                    <input type="text" class="text-back-class"  ng-model="register.username" data-clear-btn="true" placeholder="Family Name">
+                </div>
+            </div>
+            <div class="feed-head"> Job Details </div>
+            <div  class="padding"  >
+                <div class="ui-input-text"  >
+                    <input type="text" class="text-back-class"  ng-model="jobDetails.designation" data-clear-btn="true" placeholder="Designation">
+                </div>
+                <div class="ui-input-text" >
+                    <input type="text" class="text-back-class"  ng-model="jobDetails.company" data-clear-btn="true" placeholder="Company">
+                </div>
+                <div class="row" style="font-size: 12px;">
+                    <div class="col col-33" style="padding-top: 17px; font-size: 12px;">Start Date</div>
+                    <div class="col col-66" align="left" style="padding: 0;">
+                        <input type="date" class="text-back-class"  ng-model="jobDetails.startdate" style="border-bottom: 1px solid #ccc !important;"/>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col col-33" style="padding-top: 17px;font-size: 12px;">To Date</div>
+                <div class="col col-66" align="left" style="padding: 0;">
+                    <!--<input type="text"  id="enddate" ng-model="today" ng-click="showDatepicker()" class="text-back-class" style="border-bottom: 1px solid #ccc "/>-->
+                    <input type="date" ng-model="today" class="text-back-class" style="border-bottom: 1px solid #ccc "/>
+                </div>
+                </div>
+                <div class="ui-input-text" >
+                    <input type="text" class="text-back-class" ng-model="jobDetails.roles" data-clear-btn="true" placeholder="Roles/Projects">
+                </div>
+                <div class="ui-input-text" >
+                    <input type="text" class="text-back-class" ng-model="jobDetails.roles2" data-clear-btn="true" placeholder="Roles/Projects">
+                </div>
+                <div align="center" style="text-align: center !important; margin-top: 5px;">
+                    <span style="padding:4px; margin-right: 5px; background: #000; border-radius: 60px; color: #fff;" ng-repeat="job in userJobs" ng-click="showContent(job.id)">{{job.id}}</span>
+                </div>
+
+                <div ng-repeat="r in repeatData" style="border-top: 1px solid #ccc; margin-top: 20px;">
+                    <div class="ui-input-text"  >
+                        <input type="text" class="text-back-class"  ng-model="" data-clear-btn="true" placeholder="Designation">
+                    </div>
+                    <div class="ui-input-text" >
+                        <input type="text" class="text-back-class"  ng-model="" data-clear-btn="true" placeholder="Company">
+                    </div>
+                    <div class="row" style="font-size: 12px;">
+                        <div class="col col-33" style="padding-top: 17px; font-size: 12px;">Start Date</div>
+                        <div class="col col-66" align="left" style="padding: 0;">
+                            <input type="date" class="text-back-class" style="border-bottom: 1px solid #ccc !important;"/> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-33" style="padding-top: 17px;font-size: 12px;">To Date</div>
+                        <div class="col col-66" align="left" style="padding: 0;">
+                            <input type="date" ng-model="" class="text-back-class" style="border-bottom: 1px solid #ccc !important;"/>
+                        </div>
+                    </div>
+                    <div class="ui-input-text" >
+                        <input type="text" class="text-back-class"  data-clear-btn="true" placeholder="Roles/Projects">
+                    </div>
+                    <div class="ui-input-text" >
+                        <input type="text" class="text-back-class" ng-model="" data-clear-btn="true" placeholder="Roles/Projects">
+                    </div>
+                    <div align="center" style="text-align: center !important; margin-top: 5px;">
+                        <span style="padding:4px; margin-right: 5px; background: #000; border-radius: 60px; color: #fff;" ng-repeat="job in userJobs" ng-click="showContent(job.id)">{{job.id}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col" align="right" ng-click="pushUser()">Add more <i class="ion-ios7-plus-outline" style="font-size: 18px;"></i> </div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col" align="right"> <button class="button button-block register-btn" ng-click="userRegister(register)" style="height: 25px;">
+                        Register
+                    </button></div>
+                </div>
+            </div>
+            </div>
+        </ion-content>
+    </ion-view>
+</script>
+
+
+
+<script id="index.html" type="text/ng-template">
+    <ion-view hide-back-button="true">
+        <div class="bar bar-subheader fly-sub-header">
+            <div class="row" style="padding: 0px;">
+                <div class="col" style="padding: 0px; padding-top: 2px;"> <span class="sub-header-title">HOME</span></div>
+                <div class="col sub-icon-col">
+                    <img src="img/src.PNG" width="20"/>
+                </div>
+            </div>
+        </div>
+        <ion-content class="has-subheader padding" >
+            <div style="border-bottom: 1px solid #d11f6b; border-top: 1px solid #d11f6b; padding-top: 5px; padding-bottom: 5px; margin-top: -10px;">
+                <img src="img/cls.png" width="100%" style="margin-top: 2px; margin-bottom: -3px;"/>
+            </div>
+            <div class="feed-head"> Feeds </div>
+            <div class="list">
+                <a class="item" href="#" ng-repeat="feed in feeds">
+                    
+                    <!--<div class="row" style="padding: 0; line-height: 23px; padding-bottom: 12px;" id="feed_user_head">
+                        <div class="col col-80" align="left" style="padding-left: 0; white-space: normal; font-family: Lucida Sans Unicode;">{{feed.username}}</div>
+                        <div class="col col-25" align="right" style="color: #b2b2b2; font-size: 11px; position: relative;left: -7px;">{{feed.time}}</div>
+                    </div>-->
+
+                    <div class="row" style="padding: 0; line-height: 23px; padding-bottom: 8px;" id="feed_user_head">
+                        <div class="col" align="left" style="padding-left: 0;white-space: normal; font-family: Lucida Sans Unicode; font-size: 15px;">{{feed.username}}
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 0;">
+                        <div class="col col-25" style="text-align: left; color: #b2b2b2; font-size: 15px; position: relative; left: 4px; bottom: 4px;">
+                        {{feed.time}}
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding: 0;" id="feed_content">
+                        <div class="col" style="padding-left: 10px; white-space: normal; text-align: justify;">
+                            <img src="http://www.sicsglobal.com/projects/HybridApp/flyportal/uploads/pics_large/{{feed.image}}" style="float: left; padding-right: 5px; padding-bottom: 5px; margin-right: 8px; width: 100px; height: 100px;">
+                            <span style="white-space: normal; font-size: 14px;">{{feed.feed}}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </ion-content>
+    </ion-view>
+</script>
+
+
+</body>
+</html>

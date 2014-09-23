@@ -1,0 +1,124 @@
+.fly-portal-bar{
+    background: #3fb992; border: none;padding:0px;
+}
+.fly-portal-bar .button{
+    line-height: 42px;
+}
+.fly-portal-nav-left{
+    background: #278467 !important; height: 100%; width: 50px; border-radius: 0;
+}
+.fly-sub-header{
+    top: 43px; height: 35px; background: #f3f1f2; border-bottom: 1px solid #a2a2a2;box-shadow: 0px  -1px 8px #888888;
+}
+.sub-header-title{
+font-size: 20px; font-weight: normal; color: #e776a1;
+}
+.sub-icon{
+    font-size:15px !important;
+}
+.sub-icon-col{
+    padding: 0px; padding-right: 5px; text-align: right;font-size:25px;
+}
+.fly-margin-align{
+    margin-left: 5px;
+    margin-right: 5px !important;
+}
+.fly-login-header{
+    height: 40px; background-color:#e22275; text-align: center; padding-top: 10px; color: #fff; font-weight: bold; font-size: 20px;
+}
+.fly-item{
+    background: none; border-right: 1px solid #000;
+}
+
+.ui-input-text {
+    border-bottom: 1px solid rgba(171,171,171,1);
+}
+.ui-input-text{
+    background: none;
+    background-color: none;
+    border-color: rgba(171,171,171,1);
+    /* border-width: 0px; */
+    text-shadow: 0 0px 0 transparent;
+    font-size: 17px;
+    position: relative; margin-left: 15px;
+    margin-right: 15px; margin-top: 15px;
+
+}
+.ui-input-text:before {
+    content: "";
+    background-color: rgba(171,171,171,1);
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    height: 10px;
+    width: 1px;
+}
+.ui-input-text:after {
+    content: "";
+    background-color: rgba(171,171,171,1);
+    position: absolute;
+    bottom: -1px;
+    left: -1px;
+    height: 10px;
+    width: 1px;
+}
+.login-btn{
+    background: #1fbba6; border: none; color: #fff;
+}
+.register-btn{
+    background: #f8a32f; border: none; color: #fff;
+}
+.feed-head{
+    height:30px; background-color: #6fcadd; box-shadow: 0px 5px 7px #888888; padding-left: 10px;
+    padding-top: 5px;
+    font-size: 18px; font-weight: bold; color: #f4fafa; margin-top: 10px;
+}
+#feed_user_head .col{
+    font-size: 12px; font-weight: bold;
+}
+#feed_content .col{
+    font-size: 10px; text-align: left; padding: 0px;
+}
+#feed_content .col img{
+ width:70px; height: 70px;
+}
+.user-btn{
+    background: url('../img/b.PNG') !important; width: 30px !important;
+    background-size:cover !important; background-repeat: no-repeat !important;
+}
+.user-btn2{
+    background: url('../img/b1.png') !important; width: 30px !important;
+    background-size:cover !important; background-repeat: no-repeat !important;
+}
+.user-border-btn{
+    background: url('../img/a.PNG') !important; width: 30px !important;
+     background-repeat: no-repeat !important; background-position: center !important;
+}
+.success{
+    color: #278467 !important;
+}
+.failed{
+    color:#cc2311 !important;
+}
+.text-back-class{
+    background: none;  padding-left: 20px;
+}
+
+
+textarea, 
+input[type="text"], 
+input[type="password"], 
+input[type="datetime"], 
+input[type="datetime-local"], 
+input[type="date"], 
+input[type="month"], 
+input[type="time"], 
+input[type="week"], 
+input[type="number"], 
+input[type="email"], 
+input[type="url"], 
+input[type="search"], 
+input[type="tel"], 
+input[type="color"]{
+    font-size: 16px;
+}
